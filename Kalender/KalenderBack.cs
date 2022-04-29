@@ -1,6 +1,6 @@
 ﻿namespace Kalender
 {
-    internal class KalenderBack
+    public class KalenderBack
     {
         /// <summary>
         /// Nimmt Monat und den optionalen Parameter Schaltjahr(als bool) als Eingabe und gibt die Anzahl der Tage in dem Monat zurück
