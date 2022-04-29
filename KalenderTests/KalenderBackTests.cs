@@ -41,5 +41,22 @@ namespace Kalender.Tests
 
             Assert.AreEqual(erwartet, KalenderBack.AnzahlTage(monat));
         }
+
+        [TestMethod()]
+        public void SchaltjahrTest_Schaltjahr()
+        {
+            int jahr = 2024;
+            bool erwartet = true;
+
+            Assert.AreEqual(erwartet, KalenderBack.Schaltjahr(jahr));
+        }
+        [TestMethod()]
+        public void SchaltjahrTest_keinSJ()
+        {
+            int jahr = 2023;
+            bool erwartet = false;
+
+            Assert.AreEqual(erwartet, KalenderBack.Schaltjahr(jahr));
+        }
     }
 }

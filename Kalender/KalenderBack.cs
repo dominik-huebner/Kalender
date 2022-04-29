@@ -27,5 +27,22 @@
                 return 31;
             }
         }
+
+        /// <summary>
+        /// Berechnet ob Jahr ein Schaltjahr ist
+        /// </summary>
+        /// <param name="jahr"></param>
+        /// <returns></returns>
+        public static bool Schaltjahr(int jahr)
+        {
+            if (jahr % 4 == 0 && (!(jahr % 100 == 0) || jahr % 400 == 0))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
