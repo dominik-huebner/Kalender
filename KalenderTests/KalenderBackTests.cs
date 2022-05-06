@@ -50,6 +50,7 @@ namespace Kalender.Tests
 
             Assert.AreEqual(erwartet, KalenderBack.Schaltjahr(jahr));
         }
+        
         [TestMethod()]
         public void SchaltjahrTest_keinSJ()
         {
@@ -57,6 +58,17 @@ namespace Kalender.Tests
             bool erwartet = false;
 
             Assert.AreEqual(erwartet, KalenderBack.Schaltjahr(jahr));
+        }
+
+        [TestMethod()]
+        public void WochentagFunktionTest()
+        {
+            int jahr = 2022;
+            int monat = 5;
+            int tag = 6;
+            int erwartet = 5;
+
+            Assert.AreEqual(erwartet, Wochentag.WochentagFunktion(jahr, monat, tag));
         }
     }
 }
