@@ -3,7 +3,7 @@
 namespace Kalender.Tests
 {
     [TestClass()]
-    public class KalenderBackTests
+    public class KalenderTest
     {
         [TestMethod()]
         public void AnzahlTageTest_FebruarSchaltjahr()
@@ -12,7 +12,7 @@ namespace Kalender.Tests
             bool schaltjahr = true;
             int erwartet = 29;
 
-            Assert.AreEqual(erwartet, KalenderBack.AnzahlTage(monat, schaltjahr));
+            Assert.AreEqual(erwartet, Kalender.AnzahlTage(monat, schaltjahr));
         }
 
         [TestMethod()]
@@ -21,7 +21,7 @@ namespace Kalender.Tests
             int monat = 2;
             int erwartet = 28;
 
-            Assert.AreEqual(erwartet, KalenderBack.AnzahlTage(monat));
+            Assert.AreEqual(erwartet, Kalender.AnzahlTage(monat));
         }
 
         [TestMethod()]
@@ -30,7 +30,7 @@ namespace Kalender.Tests
             int monat = 6;
             int erwartet = 30;
 
-            Assert.AreEqual(erwartet, KalenderBack.AnzahlTage(monat));
+            Assert.AreEqual(erwartet, Kalender.AnzahlTage(monat));
         }
 
         [TestMethod()]
@@ -39,7 +39,7 @@ namespace Kalender.Tests
             int monat = 5;
             int erwartet = 31;
 
-            Assert.AreEqual(erwartet, KalenderBack.AnzahlTage(monat));
+            Assert.AreEqual(erwartet, Kalender.AnzahlTage(monat));
         }
 
         [TestMethod()]
@@ -48,27 +48,16 @@ namespace Kalender.Tests
             int jahr = 2024;
             bool erwartet = true;
 
-            Assert.AreEqual(erwartet, KalenderBack.Schaltjahr(jahr));
+            Assert.AreEqual(erwartet, Kalender.Schaltjahr(jahr));
         }
-        
+
         [TestMethod()]
         public void SchaltjahrTest_keinSJ()
         {
             int jahr = 2023;
             bool erwartet = false;
 
-            Assert.AreEqual(erwartet, KalenderBack.Schaltjahr(jahr));
-        }
-
-        [TestMethod()]
-        public void WochentagFunktionTest()
-        {
-            int jahr = 2022;
-            int monat = 5;
-            int tag = 6;
-            int erwartet = 5;
-
-            Assert.AreEqual(erwartet, Wochentag.WochentagFunktion(jahr, monat, tag));
+            Assert.AreEqual(erwartet, Kalender.Schaltjahr(jahr));
         }
     }
 }
