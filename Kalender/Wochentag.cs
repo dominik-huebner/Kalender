@@ -53,14 +53,14 @@ namespace Kalender
         {
             switch (monat)
             {
-                // wenn Januar oder Frebruar im Schaltjahr
+                // Wenn Monat Januar oder Frebruar im Schaltjahr.
                 case 1 when schaltJahr:
                 case 2 when schaltJahr:
                     return (JahrCode(jahr)
                         + _monatCode[monat]
                         + _jHCode[int.Parse(jahr.ToString().Substring(0, 2))]
                         + tag - 1) % 7;
-                // wenn kein Schaltjahr
+                // Wenn kein Schaltjahr oder Schaltjahr nach Februar.
                 default:
                     return (JahrCode(jahr)
                         + _monatCode[monat]
@@ -76,7 +76,7 @@ namespace Kalender
         /// <returns>Jahrescode</returns>
         public static int JahrCode(int jahr)
         {
-            // letzte beide Stellen des Jahrs (yyYY)
+            // Die letzten beide Stellen des Jahrs (yyYY).
             int jahr2letzteStellen = int.Parse(jahr.ToString()[^2..]);
 
             return (jahr2letzteStellen + jahr2letzteStellen / 4) % 7;

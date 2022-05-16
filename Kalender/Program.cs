@@ -2,11 +2,12 @@
 
 namespace Kalender
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Kalenderblatt kalenderblatt = new(6, 2022);
+            kalenderblatt.PrintKalender();
         }
     }
 }
