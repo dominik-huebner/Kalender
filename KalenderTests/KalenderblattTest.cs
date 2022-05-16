@@ -3,7 +3,7 @@
 namespace Kalender.Tests
 {
     [TestClass()]
-    public class KalenderTest
+    public class KalenderblattTest
     {
         [TestMethod()]
         public void AnzahlTageTest_FebruarSchaltjahr()
@@ -12,7 +12,7 @@ namespace Kalender.Tests
             bool schaltjahr = true;
             int erwartet = 29;
 
-            Assert.AreEqual(erwartet, Kalender.AnzahlTage(monat, schaltjahr));
+            Assert.AreEqual(erwartet, Kalenderblatt.AnzahlTage(monat, schaltjahr));
         }
 
         [TestMethod()]
@@ -21,7 +21,7 @@ namespace Kalender.Tests
             int monat = 2;
             int erwartet = 28;
 
-            Assert.AreEqual(erwartet, Kalender.AnzahlTage(monat));
+            Assert.AreEqual(erwartet, Kalenderblatt.AnzahlTage(monat));
         }
 
         [TestMethod()]
@@ -30,7 +30,7 @@ namespace Kalender.Tests
             int monat = 6;
             int erwartet = 30;
 
-            Assert.AreEqual(erwartet, Kalender.AnzahlTage(monat));
+            Assert.AreEqual(erwartet, Kalenderblatt.AnzahlTage(monat));
         }
 
         [TestMethod()]
@@ -39,7 +39,7 @@ namespace Kalender.Tests
             int monat = 5;
             int erwartet = 31;
 
-            Assert.AreEqual(erwartet, Kalender.AnzahlTage(monat));
+            Assert.AreEqual(erwartet, Kalenderblatt.AnzahlTage(monat));
         }
 
         [TestMethod()]
@@ -48,7 +48,7 @@ namespace Kalender.Tests
             int jahr = 2024;
             bool erwartet = true;
 
-            Assert.AreEqual(erwartet, Kalender.Schaltjahr(jahr));
+            Assert.AreEqual(erwartet, Kalenderblatt.Schaltjahr(jahr));
         }
 
         [TestMethod()]
@@ -57,7 +57,7 @@ namespace Kalender.Tests
             int jahr = 2023;
             bool erwartet = false;
 
-            Assert.AreEqual(erwartet, Kalender.Schaltjahr(jahr));
+            Assert.AreEqual(erwartet, Kalenderblatt.Schaltjahr(jahr));
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Kalender
 {
-    internal class Kalenderblatt
+    public class Kalenderblatt
     {
         private readonly int _monat;
         private readonly int _jahr;
