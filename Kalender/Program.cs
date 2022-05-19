@@ -16,6 +16,8 @@ namespace Kalender
 
                 while (!monatSuccess)
                 {
+                    Console.WriteLine("Gib eine Zahl zwischen 1 (Januar) und 12 (Dezember) ein \nGib exit ein um das Programm zu beenden");
+
                     Console.Write("Monat: ");
                     string inputMonat = Console.ReadLine();
                     monatSuccess = int.TryParse(inputMonat, out monat);
@@ -28,12 +30,12 @@ namespace Kalender
                         }
 
                         monatSuccess = false;
-                        Console.WriteLine("Gib eine Zahl zwischen 1 (Januar) und 12 (Dezember) ein \nGib exit ein um das Programm zu beenden");
                     }
                 }
 
                 while (!jahrSuccess)
                 {
+                    Console.WriteLine("Gib ein Jahr zwischen 1582 und 3000 ein \nGib exit ein um das Programm zu beenden");
                     Console.Write("Jahr: ");
                     string inputJahr = Console.ReadLine();
                     jahrSuccess = int.TryParse(inputJahr, out jahr);
@@ -46,7 +48,6 @@ namespace Kalender
                         }
 
                         jahrSuccess = false;
-                        Console.WriteLine("Gib ein Jahr zwischen 1582 und 3000 ein \nGib exit ein um das Programm zu beenden");
                     }
                 }
 
@@ -55,6 +56,7 @@ namespace Kalender
                     Kalenderblatt kalenderblatt = new(monat, jahr);
                     kalenderblatt.PrintKalender();
                 }
+                Console.WriteLine();
             }
         }
     }

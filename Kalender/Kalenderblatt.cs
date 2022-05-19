@@ -32,8 +32,8 @@ namespace Kalender
         {
             _monat = monat;
             _jahr = jahr;
-            _schaltjahr = Schaltjahr(monat);
-            _anzahlTage = AnzahlTage(jahr, _schaltjahr);
+            _schaltjahr = Schaltjahr(jahr);
+            _anzahlTage = AnzahlTage(monat, _schaltjahr);
             _ersterWochentag = Wochentag.WochentagBerechnen(jahr, monat, 1, _schaltjahr);
         }
 
@@ -91,7 +91,7 @@ namespace Kalender
             string printLinie = string.Format("|{0,11}|{1,11}|{2,11}|{3,11}|{4,11}|{5,11}|{6,11}|", "___________",
                                               "___________", "___________", "___________", "___________", "___________",
                                               "___________");
-            
+
             Console.WriteLine("{0, 45}", _monatName[_monat] + " " + _jahr);
             Console.WriteLine(string.Format(" {0,11} {1,11} {2,11} {3,11} {4,11} {5,11} {6,11} ", "___________",
                                             "___________", "___________", "___________", "___________", "___________",
