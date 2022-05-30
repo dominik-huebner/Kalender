@@ -10,9 +10,9 @@ namespace Kalender
         private readonly int _ersterWochentag;
         private readonly bool _schaltjahr;
         private readonly int _anzahlTage;
-        private readonly Dictionary<int, int> _datumWochentag = new();
+        private readonly Dictionary<int, int> _datumWochentag = new Dictionary<int, int>();
 
-        private readonly Dictionary<int, string> _monatName = new()
+        private readonly Dictionary<int, string> _monatName = new Dictionary<int, string>
         {
             { 1, "Januar" },
             { 2, "Februar" },
@@ -37,19 +37,19 @@ namespace Kalender
             _ersterWochentag = Wochentag.WochentagBerechnen(jahr, monat, 1, _schaltjahr);
         }
 
-        public void DatumWochentagFunktion()
+        // wird nicht benötigt, belibt aber hier falls doch irgendwann
+        public void DatumWochentagFunktion(int ersterWochentag, int anzahlTage, Dictionary<int, int> datumWochentag)
         {
-            int x = _ersterWochentag;
-            for (int i = 1; i <= _anzahlTage; i++)
+            for (int i = 1; i <= anzahlTage; i++)
             {
-                if (x > 6)
+                if (ersterWochentag > 6)
                 {
-                    x = 0;
+                    ersterWochentag = 0;
                 }
 
-                _datumWochentag.Add(i, x);
+                datumWochentag.Add(i, ersterWochentag);
 
-                x++;
+                ersterWochentag++;
             }
         }
 

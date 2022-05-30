@@ -53,7 +53,7 @@ namespace Kalender
 
                 if (monatSuccess && jahrSuccess)
                 {
-                    Kalenderblatt kalenderblatt = new(monat, jahr);
+                    Kalenderblatt kalenderblatt = new Kalenderblatt(monat, jahr);
                     kalenderblatt.PrintKalender();
                 }
                 Console.WriteLine();
