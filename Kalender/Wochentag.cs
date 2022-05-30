@@ -4,7 +4,7 @@ namespace Kalender
 {
     public class Wochentag
     {
-        private static readonly Dictionary<int, int> _monatCode = new()
+        private static readonly Dictionary<int, int> _monatCode = new Dictionary<int, int>
         {
             { 1, 0 },
             { 2, 3 },
@@ -20,7 +20,7 @@ namespace Kalender
             { 12, 5 }
         };
 
-        private static readonly Dictionary<int, int> _jHCode = new()
+        private static readonly Dictionary<int, int> _jHCode = new Dictionary<int, int>
         {
             { 15, 0 },
             { 19, 0 },
