@@ -157,6 +157,15 @@ namespace Kalender
                                 tag++;
                             }
                         }
+                        else if (_monat == 2)
+                        {
+                            int tag = 31 - _ersterWochentag + 1;
+                            for (int m = 0; m < _ersterWochentag; m++)
+                            {
+                                wochentagArray[m] = tag;
+                                tag++;
+                            }
+                        }
 
                         break;
                 }
