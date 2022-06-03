@@ -58,13 +58,13 @@ namespace Kalender
                 case 2 when schaltJahr:
                     return (JahrCode(jahr)
                         + _monatCode[monat]
-                        + _jHCode[int.Parse(jahr.ToString().Substring(0, 2))]
+                        + _jHCode[int.Parse(jahr.ToString()[..2])]
                         + tag - 1) % 7;
                 // Wenn kein Schaltjahr oder Schaltjahr nach Februar.
                 default:
                     return (JahrCode(jahr)
                         + _monatCode[monat]
-                        + _jHCode[int.Parse(jahr.ToString().Substring(0, 2))]
+                        + _jHCode[int.Parse(jahr.ToString()[..2])]
                         + tag) % 7;
             }
         }
@@ -79,7 +79,7 @@ namespace Kalender
             // Die letzten beide Stellen des Jahrs (yyYY).
             int jahr2letzteStellen = int.Parse(jahr.ToString()[^2..]);
 
-            return (jahr2letzteStellen + jahr2letzteStellen / 4) % 7;
+            return (jahr2letzteStellen + (jahr2letzteStellen / 4)) % 7;
         }
     }
 }

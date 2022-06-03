@@ -5,14 +5,9 @@ namespace Kalender
 {
     public class Kalenderblatt
     {
-        private readonly int _monat;
-        private readonly int _jahr;
-        private readonly int _ersterWochentag;
+        private readonly int _monat, _anzahlTage, _ersterWochentag, _jahr;
         private readonly bool _schaltjahr;
-        private readonly int _anzahlTage;
-        private readonly Dictionary<int, int> _datumWochentag = new Dictionary<int, int>();
-
-        private readonly Dictionary<int, string> _monatName = new Dictionary<int, string>
+        private readonly Dictionary<int, string> monatName = new Dictionary<int, string>
         {
             { 1, "Januar" },
             { 2, "Februar" },
@@ -28,6 +23,15 @@ namespace Kalender
             { 12, "Dezember" }
         };
 
+        public List<Feiertag> feiertage = new List<Feiertag>
+        {
+            new Feiertag(1, 1, "Neujahr"),
+            new Feiertag(5, 1, "Tag der Arbeit"),
+            new Feiertag(10, 3, "Tag der deutschen Einheit"),
+            new Feiertag(12, 25, "erster Weihnachtsfeiertag"),
+            new Feiertag(12, 26, "zweiter Weihnachtsfeiertag")
+        };
+
         public Kalenderblatt(int monat, int jahr)
         {
             _monat = monat;
@@ -35,22 +39,10 @@ namespace Kalender
             _schaltjahr = Schaltjahr(jahr);
             _anzahlTage = AnzahlTage(monat, _schaltjahr);
             _ersterWochentag = Wochentag.WochentagBerechnen(jahr, monat, 1, _schaltjahr);
-        }
-
-        // wird nicht benötigt, belibt aber hier falls doch irgendwann
-        public void DatumWochentagFunktion(int ersterWochentag, int anzahlTage, Dictionary<int, int> datumWochentag)
-        {
-            for (int i = 1; i <= anzahlTage; i++)
-            {
-                if (ersterWochentag > 6)
-                {
-                    ersterWochentag = 0;
-                }
-
-                datumWochentag.Add(i, ersterWochentag);
-
-                ersterWochentag++;
-            }
+            Feiertag ostern = FeiertageBerechnen.Ostern(jahr);
+            feiertage.Add(FeiertageBerechnen.Karfreitag(ostern));
+            feiertage.Add(ostern);
+            feiertage.Add(FeiertageBerechnen.ChristiHimmefahrt(ostern));
         }
 
         /// <summary>
@@ -92,7 +84,7 @@ namespace Kalender
                                               "___________", "___________", "___________", "___________", "___________",
                                               "___________");
 
-            Console.WriteLine("{0, 45}", _monatName[_monat] + " " + _jahr);
+            Console.WriteLine("{0, 45}", monatName[_monat] + " " + _jahr);
             Console.WriteLine(string.Format(" {0,11} {1,11} {2,11} {3,11} {4,11} {5,11} {6,11} ", "___________",
                                             "___________", "___________", "___________", "___________", "___________",
                                             "___________"));
@@ -100,9 +92,8 @@ namespace Kalender
                                             "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"));
             Console.WriteLine(printLinie);
 
-            int[] wochentagArray = new int[7];
+            dynamic[] wochentagArray = new dynamic[7];
             int i = 1;
-            int x = 1;
 
             for (int j = _ersterWochentag; j < 7; j++)
             {
@@ -112,62 +103,9 @@ namespace Kalender
 
             if (_ersterWochentag > 0)
             {
-                switch (_anzahlTage)
+                for (int m = 0; m < _ersterWochentag; m++)
                 {
-                    case 31 when _monat != 3:
-                        {
-                            int tag = 30 - _ersterWochentag + 1;
-                            for (int m = 0; m < _ersterWochentag; m++)
-                            {
-                                wochentagArray[m] = tag;
-                                tag++;
-                            }
-
-                            break;
-                        }
-
-                    case 30 when _monat != 3:
-                        {
-                            int tag = 31 - _ersterWochentag + 1;
-                            for (int m = 0; m < _ersterWochentag; m++)
-                            {
-                                wochentagArray[m] = tag;
-                                tag++;
-                            }
-
-                            break;
-                        }
-
-                    default:
-                        if (_monat == 3 && _schaltjahr)
-                        {
-                            int tag = 29 - _ersterWochentag + 1;
-                            for (int m = 0; m < _ersterWochentag; m++)
-                            {
-                                wochentagArray[m] = tag;
-                                tag++;
-                            }
-                        }
-                        else if (_monat == 3 && !_schaltjahr)
-                        {
-                            int tag = 28 - _ersterWochentag + 1;
-                            for (int m = 0; m < _ersterWochentag; m++)
-                            {
-                                wochentagArray[m] = tag;
-                                tag++;
-                            }
-                        }
-                        else if (_monat == 2)
-                        {
-                            int tag = 31 - _ersterWochentag + 1;
-                            for (int m = 0; m < _ersterWochentag; m++)
-                            {
-                                wochentagArray[m] = tag;
-                                tag++;
-                            }
-                        }
-
-                        break;
+                    wochentagArray[m] = null;
                 }
             }
 
@@ -184,8 +122,7 @@ namespace Kalender
                     {
                         for (int l = j; l < 7; l++)
                         {
-                            wochentagArray[l] = x;
-                            x++;
+                            wochentagArray[l] = null;
                         }
                         break;
                     }
@@ -196,6 +133,16 @@ namespace Kalender
                                                 wochentagArray[1], wochentagArray[2], wochentagArray[3],
                                                 wochentagArray[4], wochentagArray[5], wochentagArray[6]));
                 Console.WriteLine(printLinie);
+            }
+
+            Console.WriteLine();
+
+            foreach (Feiertag feriertag in feiertage)
+            {
+                if (feriertag.Monat == _monat)
+                {
+                    Console.WriteLine(feriertag.FeiertagName + ": " + feriertag.Tag + "." + feriertag.Monat + ".");
+                }
             }
         }
     }

@@ -2,6 +2,19 @@
 
 namespace Kalender
 {
+    public struct Feiertag
+    {
+        public Feiertag(int monat, int tag, string feiertagName)
+        {
+            Monat = monat;
+            Tag = tag;
+            FeiertagName = feiertagName;
+        }
+        public int Monat { get; }
+        public int Tag { get; }
+        public string FeiertagName { get; }
+    }
+
     internal class Program
     {
         private static void Main()

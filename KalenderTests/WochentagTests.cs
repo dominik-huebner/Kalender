@@ -1,6 +1,7 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Kalender;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Kalender.Tests
+namespace KalenderTests
 {
     [TestClass()]
     public class WochentagTests
